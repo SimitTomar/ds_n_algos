@@ -1,27 +1,28 @@
-def move_element_to_end(element_list, num):
 
-    sorted_elemet_list = sorted(element_list)
-    # [1, 2, 2, 2, 2, 2, 3, 4]
-    sorted_elemet_list_len = len(sorted_elemet_list)
+def move_element_to_end(array, toMove):
+
     i = 0
-    while i < range(sorted_elemet_list_len):
-
-        current_idx = i
-        if sorted_elemet_list[i] < num:
+    j = len(array)-1
+    while i < j:
+        if array[i] == toMove and array[j] == toMove:
+            j-=1
+        elif array[i] == toMove and array[j] != toMove:
+            print('before array', array)
+            array[i], array[j]  = array[j], array[i]
             i+=1
-        elif sorted_elemet_list[i] == num:
-            del sorted_elemet_list[i]
-            sorted_elemet_list.append(num)
-            i = current_idx
-        elif sorted_elemet_list[i] > num:
-            break
-            
+            j-=1
+            print('after array', array)
+        elif array[i] != toMove and array[j] == toMove:
+            i+=1
+            j-=1
+        elif array[i] != toMove and array[j] != toMove:
+            i+=1
     
-    return sorted_elemet_list
+    return array
 
 
-element_list = [2, 1, 2, 2, 2, 3, 4, 2]
-num = 2
+array = [2,1,2,2,2,3,4,2]
+toMove = 2
 
-move_element_list = move_element_to_end(element_list, num)
-print('move_element_list', move_element_list)
+move_element_list = move_element_to_end(array, toMove)
+# print('move_element_list', move_element_list)
